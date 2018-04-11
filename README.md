@@ -61,3 +61,61 @@ form-post.html
       input artist_name
       input country
       input submit
+
+
+### Review
+I started by getting the server up and running, as always, so I had something to build on. Once I had the basic routes going (I would refactor to a single route later) I needed to get ejs and the web pages up.
+
+This took a little more time that I had hoped, as my CSS and HTML are a bit rusty, but eventually I got a matching interface that didn't break with the window being resized.
+
+While I was writing the pages I also configured and named the forms, text fields and submit buttons. Remember I was writting pagse for both ```/form-post``` and ```/form-get```.
+
+So ```form-post.ejs``` uses a ```post``` method and ```form-get.ejs``` uses a ```get``` method. Otherwise the pages are identical.
+
+So back in ```app.js``` I was ready to start rendering these pages. Simple enough, just mathcing a ```.get``` request to the coorsponding route, I ```res.render()``` the coorosponding view. These views access the same header and footer, an exercise for myself more than anything else.
+
+Ok so now that the pages were being displayed it was time to start getting the data from either ```req.body``` or ```req.query```, which in turn was provided by ```form-post``` or ```form-get``` respectivetly.
+
+To do that we just had to write our ```/form-submit``` route. This is the route that our submit button will tigger on the forms, and this route is a ```app.all()``` route so it will take any kind of method requested. In this case, get and post.
+
+In that route we just responded with a json object the query params and the body params. Depending on which form the user submitted on, we would see the data in the coorosponding area. Post goes to body, get goes to query.
+
+Lastly I refactored the two routes, ```/form-get``` and ```/form-post``` into a single route, ```/:uri```. I then tested ```req.params.uri``` against ```/form-get``` and ```/form-post``` to decide on which page to render. In order to ensure that the ```/form-submit``` still triggered in time I moved that route above this ```/:uri``` catch all.
+
+I suppose it may have been possible to have a single page and only change the method and the text in the .ejs file. I'm not sure how to pass that kind of information to an .ejs render, or rather I don't know how to catch it on the ejs file side. hmmmmm......
+
+Ok so I figured it out. I just had to pass an object with the key values pairs of the values that I wanted to call in my .ejs file. So I created a single ```forms.ejs``` file and changed the title and method to a .ejs variable that I passed in from the route. This also meant that I could shorten my route call, now that I had a single if statment that would ensure that the user is trying to access ```/form-get``` or ```/form-post```. I spliced off whatever came after '-' and passed that to my .ejs file. Boom bang bing, single view, multiple pages, multiple methods, all data accessible.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

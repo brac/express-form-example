@@ -18,12 +18,11 @@ app.all('/form-submit', (req, res) =>{
 })
 
 app.get('/:uri', (req, res) => {
-  if (req.params.uri == 'form-get'){
-    res.render('form-get', {root: __dirname})
-  } else if (req.params.uri == 'form-post'){
-    res.render('form-post', {root: __dirname})
+  const method = req.params.uri.split('-')[1]
+  if (method == 'get' || method == 'post') {
+    res.render('forms', {method: method, root: __dirname})
   } else {
-    res.send('It is form-get or form-post please')
+   res.send('It is form-get or form-post please')
   }
 })
 
