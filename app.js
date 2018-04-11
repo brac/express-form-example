@@ -6,8 +6,15 @@ const app = express()
 
 app.set('view engine', 'ejs')
 
+// Using an absolute path is safer
+app.use(express.static(`${__dirname}/public`));
+
 app.get('/', (req, res) => {
-  res.send('Welcome back!')
+  res.render('index')
+})
+
+app.all('/form-submit', (req, res) =>{
+  res.json({message: 'The button is working!'})
 })
 
 app.listen(3000, () => {

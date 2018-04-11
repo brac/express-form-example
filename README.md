@@ -25,3 +25,39 @@ The server should have the following routes:
     - http method: `ANY`
     - response: returns a JSON response of the request's body params and the request's query params
     - example response: `{"body-params": {"artist": "bonobo", "country": "uk"}, "query-params": {}}`
+
+#### Trevor's Process
+
+npm init
+npm install express
+npm install body-parser
+index.js
+  Express
+  app.use(bodyParser.urlencoded({extended : true}))
+  app.get('/form-get')
+    res.sendFile('form-get.html', {root: ```__dirname```})
+  app.get('/form-post')
+    res.sendFile('form-post.html', {root: ```__dirname```})
+  app.all('/form-submit')
+    res.json({
+    bodyParams: req.body
+    queryParams: req.query
+  })
+
+  app.listen()
+
+form-get.html
+  body
+    h1 title
+    form method GET action=/form-subit
+      input artist_name
+      input country
+      input submit
+
+form-post.html
+  body
+    h1 title
+    form method POST action=/form-submit  //You could add query params:
+      input artist_name
+      input country
+      input submit
