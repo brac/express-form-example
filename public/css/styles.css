@@ -2,3 +2,43 @@
   margin: 0;
   padding: 0;
 }
+
+header, footer{
+  padding: 1em 0 0 2em;
+}
+
+.flex-container{
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+}
+
+.formField{
+  flex: 0 0 250px;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 1em;
+}
+
+.submit-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.input-text {
+  white-space: nowrap;
+}
+
+.text-field{
+}
+
+.submit-button {
+  margin: 1em 4em 0 0;
+  box-shadow: 3px 3px black;
+
+}

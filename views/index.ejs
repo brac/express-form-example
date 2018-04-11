@@ -2,17 +2,22 @@
   <%- include('includes/header') %>
 
   <main>
-    <form action="/form-submit">
-      <div class="formField">
-        <span>Artist Name</span>
-        <input type="text" name="artist-name">
-      </div>
-      <div class="formField">
-        <span>Country</span>
-      <input type="text" name="country">
-      </div>
-      <input type="submit">
-    </form>
+    <div class="flex-container">
+      <form class="formField" action="/form-submit">
+        <div class="inputField">
+          <span class="input-text">Artist Name</span>
+          <input type="text" name="artist-name" class="text-field">
+        </div>
+        <div class="inputField">
+          <span class="input-text">Country</span>
+          <input type="text" name="country" class="text-field">
+        </div>
+        <div class="submit-container">
+          <div class="spacer"></div>
+          <input class="submit-button" type="submit">
+        </div>
+      </form>
+    </div> <!-- .flex-container -->
   </main>
 
   <%- include('includes/footer') %>

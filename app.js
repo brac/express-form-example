@@ -9,8 +9,14 @@ app.set('view engine', 'ejs')
 // Using an absolute path is safer
 app.use(express.static(`${__dirname}/public`));
 
-app.get('/', (req, res) => {
-  res.render('index')
+app.get('/form-get', (req, res) => {
+
+  // res.render('index')
+})
+
+app.get('/form-post', (req, res) => {
+
+  // res.render('index')
 })
 
 app.all('/form-submit', (req, res) =>{
